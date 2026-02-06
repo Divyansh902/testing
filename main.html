@@ -2,10 +2,160 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My First Page</title>
+    <title>Travel With Us</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: #0a3d62;
+            color: white;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h2 {
+            margin: 0;
+        }
+
+        .navbar a {
+            color: white;
+            margin-left: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e") no-repeat center/cover;
+            height: 80vh;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .hero button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            background: #fbc531;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        /* Destinations */
+        .section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            width: 250px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            margin: 10px 0;
+        }
+
+        .card p {
+            padding: 0 10px 15px;
+            font-size: 14px;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a3d62;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>This is my first HTML page.</p>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h2>TravelWithUs</h2>
+        <div>
+            <a href="#">Home</a>
+            <a href="#">Destinations</a>
+            <a href="#">Packages</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Explore The World</h1>
+            <p>Travel to the most beautiful places on Earth</p>
+            <button>Book Now</button>
+        </div>
+    </div>
+
+    <!-- Destinations -->
+    <div class="section">
+        <h2>Popular Destinations</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34" alt="Paris">
+                <h3>Paris</h3>
+                <p>The city of love and lights.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1" alt="Bali">
+                <h3>Bali</h3>
+                <p>Tropical paradise with beaches.</p>
+            </div>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1548013146-72479768bada" alt="Dubai">
+                <h3>Dubai</h3>
+                <p>Luxury, desert & skyscrapers.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        © 2026 TravelWithUs | All Rights Reserved
+    </footer>
+
 </body>
 </html>
