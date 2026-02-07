@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Rose Day ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    background: linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    overflow:hidden;
+}
+
+/* 🌹 PETALS */
+.petal{
+    position:absolute;
+    top:-40px;
+    font-size:22px;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* ❤️ FLOATING HEARTS */
+.heart-float{
+    position:absolute;
+    bottom:-20px;
+    font-size:20px;
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+/* 🎬 SCENES */
+.scene{
+    position:absolute;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:30px;
+    opacity:0;
+    transform:scale(1.1);
+    transition:all 1.5s ease;
+}
+
+.scene.active{
+    opacity:1;
+    transform:scale(1);
+    z-index:1;
+    animation: zoomIn 2s ease;
+}
+
+@keyframes zoomIn{
+    from{transform:scale(1.15);}
+    to{transform:scale(1);}
+}
+
+/* ✨ TEXT STYLES */
+h1{
+    font-size:2.7rem;
+    margin-bottom:20px;
+}
+
+p{
+    font-size:1.4rem;
+    line-height:1.8;
+    max-width:720px;
+    min-height:140px;
+}
+
+/* 🌈 WHITE ➜ RED GLOW */
+.fade-red{
+    animation: whiteToRed 2.8s forwards;
+}
+
+@keyframes whiteToRed{
+    from{
+        color:white;
+        text-shadow:none;
+    }
+    to{
+        color:#ff2f68;
+        text-shadow:0 0 18px rgba(255,47,104,0.9);
+    }
+}
+
+/* 💓 BEATING HEART */
+.heart{
+    font-size:2.6rem;
+    margin-top:25px;
+    animation: beat 1s infinite;
+}
+
+@keyframes beat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.4);}
+}
+
+button{
+    margin-top:35px;
+    padding:12px 32px;
+    border:none;
+    border-radius:30px;
+    background:#ff2f68;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌹 SCENE 1 -->
+<div class="scene active">
+    <h1 id="t1" class="fade-red"></h1>
+    <p id="p1" class="fade-red"></p>
+</div>
+
+<!-- 💖 SCENE 2 -->
+<div class="scene">
+    <h1 id="t2" class="fade-red"></h1>
+    <p id="p2" class="fade-red"></p>
+    <div class="heart">❤️</div>
+</div>
+
+<!-- 💍 SCENE 3 -->
+<div class="scene">
+    <h1 id="t3" class="fade-red"></h1>
+    <p id="p3" class="fade-red"></p>
+    <div class="heart">💖</div>
+    <button onclick="restart()">Replay</button>
+</div>
+
+<script>
+/* 🌹 CREATE PETALS */
+for(let i=0;i<25;i++){
+    const petal=document.createElement("div");
+    petal.className="petal";
+    petal.innerHTML="🌹";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=5+Math.random()*5+"s";
+    petal.style.opacity=Math.random();
+    document.body.appendChild(petal);
+}
+
+/* ❤️ FLOATING HEARTS */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart-float";
+    h.innerHTML="❤️";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=4+Math.random()*4+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+},450);
+
+/* 💌 CONTENT */
+const data=[
+{
+    title:"🌹 Happy Rose Day",
+    text:"This rose is not just a flower...\nIt carries my heart,\nmy feelings,\nand every unspoken love ❤️"
+},
+{
+    title:"My One & Only 💕",
+    text:"In a world full of chaos,\nyou are my peace.\nIn a crowd of faces,\nyou are my favorite."
+},
+{
+    title:"Forever Yours 💖",
+    text:"🌹 My love\n🍫 My sweetness\n🧸 My comfort\n💍 My always & forever"
+}
+];
+
+const scenes=document.querySelectorAll(".scene");
+let index=0;
+
+/* ✍️ TYPEWRITER EFFECT */
+function type(el,text,speed,cb){
+    el.innerHTML="";
+    let i=0;
+    const timer=setInterval(()=>{
+        el.innerHTML+=text.charAt(i);
+        i++;
+        if(i===text.length){
+            clearInterval(timer);
+            if(cb) setTimeout(cb,1200);
+        }
+    },speed);
+}
+
+/* 🎬 SHOW SCENE */
+function showScene(i){
+    scenes.forEach(s=>s.classList.remove("active"));
+    scenes[i].classList.add("active");
+
+    type(
+        document.getElementById(`t${i+1}`),
+        data[i].title,
+        60,
+        ()=>type(
+            document.getElementById(`p${i+1}`),
+            data[i].text,
+            35,
+            ()=>{
+                if(i<scenes.length-1){
+                    setTimeout(()=>{
+                        index++;
+                        showScene(index);
+                    },2000);
+                }
+            }
+        )
+    );
+}
+
+/* ▶️ START */
+showScene(index);
+
+function restart(){
+    index=0;
+    showScene(index);
+}
+</script>
+
+</body>
+</html>
